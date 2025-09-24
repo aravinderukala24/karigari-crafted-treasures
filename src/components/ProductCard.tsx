@@ -91,14 +91,24 @@ export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) 
 
         {/* Quick add to cart */}
         <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button
-            onClick={handleAddToCart}
-            className="w-full h-8 text-xs bg-primary/90 backdrop-blur-sm hover:bg-primary"
-            disabled={!product.inStock}
-          >
-            <ShoppingCart className="h-3 w-3 mr-1" />
-            {product.inStock ? 'Add to Cart' : 'Out of Stock'}
-          </Button>
+          <div className="flex gap-1">
+            <Button
+              onClick={handleAddToCart}
+              className="flex-1 h-8 text-xs bg-primary/90 backdrop-blur-sm hover:bg-primary"
+              disabled={!product.inStock}
+            >
+              <ShoppingCart className="h-3 w-3 mr-1" />
+              {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+            </Button>
+            <Link to={`/customize/${product.id}`} className="flex-1">
+              <Button
+                variant="secondary"
+                className="w-full h-8 text-xs bg-background/90 backdrop-blur-sm"
+              >
+                Customize
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Image dots */}

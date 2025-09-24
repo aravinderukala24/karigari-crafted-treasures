@@ -5,11 +5,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { useCartStore } from '@/store/cartStore';
+import { useAuth } from '@/contexts/AuthContext';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { items } = useCartStore();
+  const { user, signOut } = useAuth();
   
   const cartItemsCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -34,17 +36,8 @@ export const Header = () => {
       {/* Main header */}
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="warm-gradient rounded-lg p-2">
-              <span className="text-xl font-serif font-bold text-primary-foreground">
-                KΛRIGΛRI
-              </span>
-            </div>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -54,24 +47,32 @@ export const Header = () => {
                 {item.name}
               </Link>
             ))}
-          </nav>
-
-          {/* Search Bar - Desktop */}
-          <div className="hidden md:flex items-center space-x-4 flex-1 max-w-md mx-6">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search handicrafts..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4"
-              />
-            </div>
           </div>
 
-          {/* Action buttons */}
+          {/* Centered Logo */}
+          <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
+            <div className="warm-gradient rounded-lg p-2">
+              <span className="text-xl font-serif font-bold text-primary-foreground">
+                KΛRIGΛRI
+              </span>
+            </div>
+          </Link>
+
+          {/* Right Side Actions */}
           <div className="flex items-center space-x-2">
+            {/* Desktop Search */}
+            <div className="hidden md:flex items-center max-w-md">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search handicrafts..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 pr-4 w-64"
+                />
+              </div>
+            </div>
             {/* Mobile search */}
             <Button variant="ghost" size="icon" className="md:hidden">
               <Search className="h-5 w-5" />
@@ -82,12 +83,30 @@ export const Header = () => {
               <Heart className="h-5 w-5" />
             </Button>
 
-            {/* Account */}
-            <Link to="/profile">
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-            </Link>
+            {/* User Profile */}
+            {user ? (
+              <div className="flex items-center space-x-2">
+                <Link to="/profile">
+                  <Button variant="ghost" size="icon">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </Link>
+                <Button 
+                  size="sm" 
+                  variant="ghost" 
+                  onClick={() => signOut()}
+                  className="hidden md:flex"
+                >
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Link to="/auth">
+                <Button size="sm" variant="outline">
+                  Sign In
+                </Button>
+              </Link>
+            )}
 
             {/* Cart */}
             <Link to="/cart">
