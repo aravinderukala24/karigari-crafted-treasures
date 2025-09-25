@@ -92,7 +92,8 @@ export const products: Product[] = [
     materials: ['Terracotta Clay'],
     dimensions: 'Teapot: 15cm H, Cups: 7cm H',
     origin: 'Khanapur, Karnataka',
-    artisan: 'Lakshmi Devi'
+    artisan: 'Lakshmi Devi',
+    is360View: true
   },
   {
     id: 'cer003',
@@ -159,7 +160,8 @@ export const products: Product[] = [
     dimensions: '200cm x 70cm',
     weight: '150g',
     origin: 'Srinagar, Kashmir',
-    artisan: 'Mohammad Ali'
+    artisan: 'Mohammad Ali',
+    is360View: true
   },
   {
     id: 'tex002',
@@ -239,7 +241,8 @@ export const products: Product[] = [
     dimensions: '25cm L x 18cm H x 10cm W',
     weight: '1.2kg',
     origin: 'Channapatna, Karnataka',
-    artisan: 'Ravi Gowda'
+    artisan: 'Ravi Gowda',
+    is360View: true
   },
   {
     id: 'woo002',
@@ -319,7 +322,8 @@ export const products: Product[] = [
     tags: ['wedding', 'traditional', 'luxury'],
     materials: ['Gold Plated', 'Kundan', 'Pearls'],
     origin: 'Jaipur, Rajasthan',
-    artisan: 'Suresh Jewellers'
+    artisan: 'Suresh Jewellers',
+    is360View: true
   },
   {
     id: 'jew002',
@@ -476,7 +480,8 @@ export const products: Product[] = [
     materials: ['Handmade Paper', 'Natural Pigments'],
     dimensions: '40cm x 30cm',
     origin: 'Madhubani, Bihar',
-    artisan: 'Bharti Dayal'
+    artisan: 'Bharti Dayal',
+    is360View: true
   },
   {
     id: 'art002',

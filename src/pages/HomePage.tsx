@@ -35,13 +35,17 @@ export const HomePage = () => {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground btn-glow">
-                    Shop Collections
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button size="lg" variant="outline" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
-                    Meet Our Artisans
-                  </Button>
+                  <Link to="/categories">
+                    <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground btn-glow">
+                      Shop Collections
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link to="/artisans">
+                    <Button size="lg" variant="outline" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
+                      Meet Our Artisans
+                    </Button>
+                  </Link>
                 </div>
 
                 {/* Stats */}
@@ -81,29 +85,29 @@ export const HomePage = () => {
       </section>
 
       {/* Features */}
-      <section className="py-12 bg-muted/30">
+      <section className="py-12 subtle-gradient">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center space-y-2">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
                 <Shield className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold">Authentic Guarantee</h3>
-              <p className="text-sm text-muted-foreground">100% genuine handicrafts from verified artisans</p>
+              <h3 className="font-semibold text-primary-foreground">Authentic Guarantee</h3>
+              <p className="text-sm text-primary-foreground/80">100% genuine handicrafts from verified artisans</p>
             </div>
             <div className="text-center space-y-2">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
                 <Truck className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold">Free Shipping</h3>
-              <p className="text-sm text-muted-foreground">Free delivery on orders above ₹2000</p>
+              <h3 className="font-semibold text-primary-foreground">Free Shipping</h3>
+              <p className="text-sm text-primary-foreground/80">Free delivery on orders above ₹2000</p>
             </div>
             <div className="text-center space-y-2">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
                 <Sparkles className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold">Artisan Support</h3>
-              <p className="text-sm text-muted-foreground">Direct support to traditional craftspeople</p>
+              <h3 className="font-semibold text-primary-foreground">Artisan Support</h3>
+              <p className="text-sm text-primary-foreground/80">Direct support to traditional craftspeople</p>
             </div>
           </div>
         </div>
@@ -145,7 +149,7 @@ export const HomePage = () => {
                 Handpicked items from our talented artisans
               </p>
             </div>
-            <Link to="/products">
+            <Link to="/categories">
               <Button variant="outline">
                 View All
                 <ArrowRight className="ml-2 h-4 w-4" />

@@ -14,6 +14,9 @@ import ProfilePage from "@/pages/ProfilePage";
 import UserProfilePage from "@/pages/UserProfilePage";
 import AuthPage from "@/pages/AuthPage";
 import CustomizePage from "@/pages/CustomizePage";
+import ArtisansPage from "@/pages/ArtisansPage";
+import NewArrivalsPage from "@/pages/NewArrivalsPage";
+import BestSellersPage from "@/pages/BestSellersPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,9 +40,9 @@ const App = () => (
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/customize/:productId" element={<CustomizePage />} />
             <Route path="/categories" element={<CategoryPage />} />
-            <Route path="/new-arrivals" element={<CategoryPage />} />
-            <Route path="/best-sellers" element={<CategoryPage />} />
-            <Route path="/artisans" element={<ProfilePage />} />
+            <Route path="/new-arrivals" element={<NewArrivalsPage />} />
+            <Route path="/best-sellers" element={<BestSellersPage />} />
+            <Route path="/artisans" element={<ArtisansPage />} />
             <Route path="/about" element={<ProfilePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

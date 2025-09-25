@@ -51,7 +51,8 @@
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-warm: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--primary)) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+    --gradient-subtle: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--secondary)) 50%, hsl(var(--accent) / 0.1) 100%);
+    --gradient-artisan: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 100%);
 
     /* Shadows */
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.2);
@@ -110,6 +111,10 @@
 
   .subtle-gradient {
     background: var(--gradient-subtle);
+  }
+
+  .artisan-gradient {
+    background: var(--gradient-artisan);
   }
 
   /* Card styles */

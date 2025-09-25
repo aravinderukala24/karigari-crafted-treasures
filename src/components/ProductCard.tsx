@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, ShoppingCart, Star, Eye } from 'lucide-react';
+import { Heart, ShoppingCart, Star, Eye, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Product } from '@/data/products';
 import { useCartStore } from '@/store/cartStore';
 import { toast } from 'sonner';
+import { ProductView360 } from './ProductView360';
 
 interface ProductCardProps {
   product: Product;
@@ -16,6 +17,7 @@ interface ProductCardProps {
 export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [show360View, setShow360View] = useState(false);
   const { addItem } = useCartStore();
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -41,16 +43,22 @@ export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) 
   return (
     <Card className="group product-card overflow-hidden h-full">
       <div className="relative aspect-square overflow-hidden">
-        <Link to={`/product/${product.id}`}>
-          <img
-            src={product.images[currentImageIndex]}
-            alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            onError={(e) => {
-              e.currentTarget.src = '/placeholder.svg';
-            }}
-          />
-        </Link>
+        {product.is360View && show360View ? (
+          <ProductView360 images={product.images} productName={product.name} />
+        ) : (
+          <>
+            <Link to={`/product/${product.id}`}>
+              <img
+                src={product.images[currentImageIndex]}
+                alt={product.name}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => {
+                  e.currentTarget.src = '/placeholder.svg';
+                }}
+              />
+            </Link>
+          </>
+        )}
         
         {/* Badges */}
         <div className="absolute top-2 left-2 flex flex-col gap-1">
@@ -60,7 +68,12 @@ export const ProductCard = ({ product, variant = 'default' }: ProductCardProps) 
             </Badge>
           )}
           {product.is360View && (
-            <Badge variant="secondary" className="text-xs">
+            <Badge 
+              variant="secondary" 
+              className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+              onClick={() => setShow360View(!show360View)}
+            >
+              <RotateCcw className="h-3 w-3 mr-1" />
               360° View
             </Badge>
           )}
