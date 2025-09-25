@@ -109,7 +109,8 @@ export const products: Product[] = [
     tags: ['kitchenware', 'colorful', 'handpainted'],
     materials: ['Ceramic', 'Food-safe Glaze'],
     dimensions: '12cm diameter x 6cm H',
-    origin: 'Khurja, Uttar Pradesh'
+    origin: 'Khurja, Uttar Pradesh',
+    is360View: true
   },
   {
     id: 'cer004',
@@ -124,7 +125,8 @@ export const products: Product[] = [
     tags: ['gardening', 'rustic', 'eco-friendly'],
     materials: ['Natural Clay'],
     dimensions: 'Small: 10cm, Medium: 15cm, Large: 20cm',
-    origin: 'Pondicherry'
+    origin: 'Pondicherry',
+    is360View: true
   },
   {
     id: 'cer005',
@@ -140,7 +142,8 @@ export const products: Product[] = [
     materials: ['Unglazed Clay'],
     dimensions: '30cm H x 20cm W',
     weight: '2kg',
-    origin: 'Kumartuli, West Bengal'
+    origin: 'Kumartuli, West Bengal',
+    is360View: true
   },
 
   // Textiles & Fabrics (5 products)
@@ -176,7 +179,8 @@ export const products: Product[] = [
     tags: ['silk', 'festive', 'zari'],
     materials: ['Pure Silk', 'Gold Zari'],
     dimensions: '250cm x 90cm',
-    origin: 'Varanasi, Uttar Pradesh'
+    origin: 'Varanasi, Uttar Pradesh',
+    is360View: true
   },
   {
     id: 'tex003',
@@ -192,7 +196,8 @@ export const products: Product[] = [
     tags: ['bedding', 'blockprint', 'colorful'],
     materials: ['100% Cotton'],
     dimensions: 'Double Bed (220cm x 240cm)',
-    origin: 'Sanganer, Rajasthan'
+    origin: 'Sanganer, Rajasthan',
+    is360View: true
   },
   {
     id: 'tex004',
@@ -207,7 +212,8 @@ export const products: Product[] = [
     tags: ['saree', 'handloom', 'traditional'],
     materials: ['Handloom Cotton'],
     dimensions: '6.5m length',
-    origin: 'Kanchipuram, Tamil Nadu'
+    origin: 'Kanchipuram, Tamil Nadu',
+    is360View: true
   },
   {
     id: 'tex005',
@@ -222,7 +228,8 @@ export const products: Product[] = [
     tags: ['handpainted', 'art', 'unique'],
     materials: ['Cotton', 'Natural Dyes'],
     dimensions: '180cm x 40cm',
-    origin: 'Madhubani, Bihar'
+    origin: 'Madhubani, Bihar',
+    is360View: true
   },
 
   // Woodcraft (5 products)
@@ -258,7 +265,8 @@ export const products: Product[] = [
     tags: ['luxury', 'storage', 'aromatic'],
     materials: ['Pure Sandalwood', 'Velvet Lining'],
     dimensions: '20cm x 15cm x 8cm',
-    origin: 'Mysore, Karnataka'
+    origin: 'Mysore, Karnataka',
+    is360View: true
   },
   {
     id: 'woo003',
@@ -273,7 +281,8 @@ export const products: Product[] = [
     tags: ['kitchenware', 'functional', 'traditional'],
     materials: ['Teak Wood'],
     dimensions: '25cm diameter x 8cm H',
-    origin: 'Saharanpur, Uttar Pradesh'
+    origin: 'Saharanpur, Uttar Pradesh',
+    is360View: true
   },
   {
     id: 'woo004',
@@ -288,7 +297,8 @@ export const products: Product[] = [
     tags: ['decorative', 'mirror', 'ornate'],
     materials: ['Mango Wood', 'Glass Mirror'],
     dimensions: '60cm x 45cm',
-    origin: 'Jodhpur, Rajasthan'
+    origin: 'Jodhpur, Rajasthan',
+    is360View: true
   },
   {
     id: 'woo005',
@@ -304,7 +314,8 @@ export const products: Product[] = [
     tags: ['eco-friendly', 'serving', 'sustainable'],
     materials: ['Bamboo'],
     dimensions: 'Large: 35cm, Medium: 25cm, Small: 20cm',
-    origin: 'Assam'
+    origin: 'Assam',
+    is360View: true
   },
 
   // Jewelry & Accessories (5 products)

@@ -89,6 +89,75 @@ export type Database = {
         }
         Relationships: []
       }
+      reviews: {
+        Row: {
+          comment: string | null
+          created_at: string
+          helpful_count: number
+          id: string
+          product_id: string
+          rating: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          helpful_count?: number
+          id?: string
+          product_id: string
+          rating: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          helpful_count?: number
+          id?: string
+          product_id?: string
+          rating?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      shipping_options: {
+        Row: {
+          base_cost: number
+          created_at: string
+          delivery_days_max: number
+          delivery_days_min: number
+          description: string | null
+          id: string
+          is_active: boolean
+          is_international: boolean
+          name: string
+        }
+        Insert: {
+          base_cost: number
+          created_at?: string
+          delivery_days_max: number
+          delivery_days_min: number
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_international?: boolean
+          name: string
+        }
+        Update: {
+          base_cost?: number
+          created_at?: string
+          delivery_days_max?: number
+          delivery_days_min?: number
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          is_international?: boolean
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

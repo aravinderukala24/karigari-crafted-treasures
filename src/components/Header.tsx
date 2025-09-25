@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { useCartStore } from '@/store/cartStore';
 import { useAuth } from '@/contexts/AuthContext';
+import potLogo from '@/assets/pot-logo.png';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +22,9 @@ export const Header = () => {
     { name: 'New Arrivals', href: '/new-arrivals' },
     { name: 'Best Sellers', href: '/best-sellers' },
     { name: 'Artisans', href: '/artisans' },
-    { name: 'About', href: '/about' }
+    { name: 'About', href: '/about' },
+    { name: 'Community', href: '/community' },
+    { name: 'Reviews', href: '/reviews' }
   ];
 
   return (
@@ -51,6 +54,7 @@ export const Header = () => {
 
           {/* Centered Logo */}
           <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
+            <img src={potLogo} alt="Pottery" className="w-8 h-8" />
             <div className="warm-gradient rounded-lg p-2">
               <span className="text-xl font-serif font-bold text-primary-foreground">
                 KΛRIGΛRI

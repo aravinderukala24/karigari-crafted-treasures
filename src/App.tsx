@@ -17,6 +17,8 @@ import CustomizePage from "@/pages/CustomizePage";
 import ArtisansPage from "@/pages/ArtisansPage";
 import NewArrivalsPage from "@/pages/NewArrivalsPage";
 import BestSellersPage from "@/pages/BestSellersPage";
+import AboutPage from "@/pages/AboutPage";
+import ArtismCommunityPage from "@/pages/ArtismCommunityPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,7 +45,8 @@ const App = () => (
             <Route path="/new-arrivals" element={<NewArrivalsPage />} />
             <Route path="/best-sellers" element={<BestSellersPage />} />
             <Route path="/artisans" element={<ArtisansPage />} />
-            <Route path="/about" element={<ProfilePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/community" element={<ArtismCommunityPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
