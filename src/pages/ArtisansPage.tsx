@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Star, MapPin, Award, Heart, Phone, Package, Clock } from 'lucide-react';
+import ArtisanProductModal from '@/components/ArtisanProductModal';
+import { getDefaultProducts } from '@/utils/defaultProducts';
 import artisan1 from '@/assets/artisan-1.jpg';
-import artisan2 from '@/assets/artisan-2.jpg';
+import artisan2 from '@/assets/artisan-2-teen.jpg';
 import artisan3 from '@/assets/artisan-3.jpg';
 import artisan4 from '@/assets/artisan-4.jpg';
 import artisan5 from '@/assets/artisan-5.jpg';
@@ -43,27 +46,131 @@ const artisans = [
     testimonials: [
       { reviewer: 'Aravind', rating: 5, comment: 'Charitha\'s leadership has transformed our artisan community. Her innovative approach is remarkable!' },
       { reviewer: 'Customer A', rating: 5, comment: 'Beautiful pottery with excellent customer service. Quick delivery too!' }
+    ],
+    products: [
+      {
+        id: 'p1-1',
+        name: 'Blue Pottery Vase',
+        price: 1599,
+        originalPrice: 1999,
+        image: '/ceramic-vase-1.jpg',
+        rating: 4.9,
+        reviews: 67,
+        description: 'Handcrafted blue pottery vase with traditional Rajasthani designs'
+      },
+      {
+        id: 'p1-2',
+        name: 'Ceramic Tea Set',
+        price: 2299,
+        originalPrice: 2799,
+        image: '/ceramic-teaset-1.jpg',
+        rating: 4.8,
+        reviews: 45,
+        description: 'Complete ceramic tea set with modern functionality'
+      },
+      {
+        id: 'p1-3',
+        name: 'Decorative Bowl Set',
+        price: 899,
+        originalPrice: 1199,
+        image: '/ceramic-bowl-1.jpg',
+        rating: 4.7,
+        reviews: 38,
+        description: 'Set of decorative ceramic bowls for serving'
+      },
+      {
+        id: 'p1-4',
+        name: 'Garden Planter',
+        price: 1299,
+        originalPrice: 1599,
+        image: '/ceramic-planter-1.jpg',
+        rating: 4.8,
+        reviews: 29,
+        description: 'Beautiful ceramic planter for indoor plants'
+      },
+      {
+        id: 'p1-5',
+        name: 'Digital Marketing Course',
+        price: 4999,
+        originalPrice: 6999,
+        image: '/ceramic-vase-1.jpg',
+        rating: 4.9,
+        reviews: 124,
+        description: 'Complete digital marketing course for artisans'
+      }
     ]
   },
   {
     id: 2,
     name: 'Aravind Sharma',
-    type: 'Tech-Savvy Professional',
+    type: 'Teen Entrepreneur',
     craft: 'Wood Carving & Digital Design',
     location: 'Mysore, Karnataka',
     address: '23, Channapatna Road, Mysore',
     contact: '+91 98765 43211',
-    experience: '12+ years',
+    experience: '5+ years',
     rating: 4.8,
     reviews: 287,
     totalOrders: 980,
     specialties: ['Traditional Wood Carving', '3D Design', 'Custom Sculptures'],
     image: artisan2,
-    description: 'Expert wood carver who bridges traditional techniques with modern design software. Aravind creates stunning pieces that blend heritage craftsmanship with contemporary aesthetics.',
-    awards: ['Karnataka Wood Craft Excellence 2022', 'Innovation in Traditional Arts 2023'],
+    description: 'Young talented wood carver who bridges traditional techniques with modern design software. At just 19, Aravind creates stunning pieces that blend heritage craftsmanship with contemporary aesthetics.',
+    awards: ['Karnataka Wood Craft Excellence 2022', 'Young Innovator Award 2024'],
     testimonials: [
-      { reviewer: 'Sathvika', rating: 5, comment: 'Aravind\'s work is absolutely stunning! His attention to detail is incredible.' },
-      { reviewer: 'Customer B', rating: 5, comment: 'The wooden elephant sculpture exceeded all expectations. Perfect craftsmanship!' }
+      { reviewer: 'Sathvika', rating: 5, comment: 'Aravind\'s work is absolutely stunning! His attention to detail is incredible for someone so young.' },
+      { reviewer: 'Customer B', rating: 5, comment: 'The wooden elephant sculpture exceeded all expectations. Amazing talent!' }
+    ],
+    products: [
+      {
+        id: 'p2-1',
+        name: 'Handcrafted Wooden Elephant',
+        price: 1299,
+        originalPrice: 1599,
+        image: '/wood-elephant-1.jpg',
+        rating: 4.9,
+        reviews: 45,
+        description: 'Beautifully carved traditional elephant sculpture'
+      },
+      {
+        id: 'p2-2',
+        name: 'Wooden Jewelry Box',
+        price: 899,
+        originalPrice: 1199,
+        image: '/wood-jewelrybox-1.jpg',
+        rating: 4.8,
+        reviews: 32,
+        description: 'Elegant wooden jewelry box with intricate carvings'
+      },
+      {
+        id: 'p2-3',
+        name: 'Custom Wood Sculpture',
+        price: 2499,
+        originalPrice: 2999,
+        image: '/wood-elephant-1.jpg',
+        rating: 4.9,
+        reviews: 18,
+        description: 'Personalized wooden sculptures made to order'
+      },
+      {
+        id: 'p2-4',
+        name: 'Wooden Spice Box Set',
+        price: 799,
+        originalPrice: 999,
+        image: '/wood-spicebox-1.jpg',
+        rating: 4.7,
+        reviews: 28,
+        description: 'Traditional spice storage with modern functionality'
+      },
+      {
+        id: 'p2-5',
+        name: 'Decorative Wall Art',
+        price: 1599,
+        originalPrice: 1899,
+        image: '/wood-elephant-1.jpg',
+        rating: 4.8,
+        reviews: 22,
+        description: 'Hand-carved wooden wall art pieces'
+      }
     ]
   },
   {
@@ -85,6 +192,58 @@ const artisans = [
     testimonials: [
       { reviewer: 'Nagi', rating: 5, comment: 'Sathvika\'s sustainable approach is inspiring. Her textiles are both beautiful and eco-conscious!' },
       { reviewer: 'Customer C', rating: 5, comment: 'Love the vibrant colors and soft texture. Supporting sustainable fashion!' }
+    ],
+    products: [
+      {
+        id: 'p3-1',
+        name: 'Pashmina Shawl',
+        price: 2999,
+        originalPrice: 3499,
+        image: '/textile-pashmina-1.jpg',
+        rating: 4.9,
+        reviews: 78,
+        description: 'Handwoven sustainable pashmina with eco-friendly dyes'
+      },
+      {
+        id: 'p3-2',
+        name: 'Cotton Dupatta Set',
+        price: 1299,
+        originalPrice: 1599,
+        image: '/textile-dupatta-1.jpg',
+        rating: 4.8,
+        reviews: 56,
+        description: 'Organic cotton dupatta with traditional patterns'
+      },
+      {
+        id: 'p3-3',
+        name: 'Bedsheet Set',
+        price: 1899,
+        originalPrice: 2399,
+        image: '/textile-bedsheet-1.jpg',
+        rating: 4.7,
+        reviews: 43,
+        description: 'Premium cotton bedsheet set with natural dyes'
+      },
+      {
+        id: 'p3-4',
+        name: 'Eco-friendly Saree',
+        price: 3999,
+        originalPrice: 4999,
+        image: '/textile-pashmina-1.jpg',
+        rating: 4.9,
+        reviews: 32,
+        description: 'Traditional saree made with sustainable materials'
+      },
+      {
+        id: 'p3-5',
+        name: 'Textile Workshop Kit',
+        price: 2499,
+        originalPrice: 2999,
+        image: '/textile-dupatta-1.jpg',
+        rating: 4.8,
+        reviews: 28,
+        description: 'Complete kit for learning sustainable textile techniques'
+      }
     ]
   },
   {
@@ -433,40 +592,55 @@ const artisans = [
 ];
 
 const ArtisansPage = () => {
+  const [selectedArtisan, setSelectedArtisan] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleViewProducts = (artisan: any) => {
+    // Use artisan's products if available, otherwise generate default products
+    const products = artisan.products || getDefaultProducts(artisan.id, artisan.craft);
+    setSelectedArtisan({ ...artisan, products });
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedArtisan(null);
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section with Gradient Background */}
-      <section className="subtle-gradient py-16">
+      <section className="subtle-gradient py-8 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-6">
+          <div className="text-center space-y-4 md:space-y-6">
             <Badge className="bg-accent/20 text-accent-foreground border-accent/30 mb-4">
               <Award className="h-3 w-3 mr-1" />
               Meet Our Master Craftspeople
             </Badge>
             
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary-foreground">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-primary-foreground animate-fade-in">
               The Artisans Behind
               <span className="block text-accent">Every Masterpiece</span>
             </h1>
             
-            <p className="text-lg text-primary-foreground/90 max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto px-4">
               Discover the talented hands and creative minds that bring centuries-old traditions to life. 
               Each artisan in our community represents generations of skill, passion, and cultural heritage.
             </p>
 
             {/* Stats */}
-            <div className="flex justify-center items-center gap-8 pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-foreground">20+</div>
-                <div className="text-sm text-primary-foreground/70">Expert Artisans</div>
+            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 pt-6 md:pt-8">
+              <div className="text-center animate-scale-in">
+                <div className="text-2xl md:text-3xl font-bold text-primary-foreground">20+</div>
+                <div className="text-xs md:text-sm text-primary-foreground/70">Expert Artisans</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-foreground">12+</div>
-                <div className="text-sm text-primary-foreground/70">Indian States</div>
+              <div className="text-center animate-scale-in" style={{animationDelay: '0.1s'}}>
+                <div className="text-2xl md:text-3xl font-bold text-primary-foreground">12+</div>
+                <div className="text-xs md:text-sm text-primary-foreground/70">Indian States</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-foreground">15+</div>
-                <div className="text-sm text-primary-foreground/70">Art Forms</div>
+              <div className="text-center animate-scale-in" style={{animationDelay: '0.2s'}}>
+                <div className="text-2xl md:text-3xl font-bold text-primary-foreground">15+</div>
+                <div className="text-xs md:text-sm text-primary-foreground/70">Art Forms</div>
               </div>
             </div>
           </div>
@@ -474,12 +648,12 @@ const ArtisansPage = () => {
       </section>
 
       {/* Artisans Grid */}
-      <section className="py-16">
+      <section className="py-8 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {artisans.map((artisan) => (
-              <Card key={artisan.id} className="group card-elegant overflow-hidden">
-                <div className="relative h-64 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+            {artisans.map((artisan, index) => (
+              <Card key={artisan.id} className="group card-elegant overflow-hidden animate-fade-in hover-scale" style={{animationDelay: `${index * 0.1}s`}}>
+                <div className="relative h-48 md:h-64 overflow-hidden">
                   <img
                     src={artisan.image}
                     alt={`${artisan.name}'s work`}
@@ -498,10 +672,10 @@ const ArtisansPage = () => {
                   </div>
                 </div>
 
-                <CardHeader>
+                <CardHeader className="pb-2">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-xl font-serif font-bold">{artisan.name}</h3>
+                      <h3 className="text-lg md:text-xl font-serif font-bold line-clamp-1">{artisan.name}</h3>
                       <div className="flex items-center gap-1">
                         <Star className="h-4 w-4 fill-accent text-accent" />
                         <span className="text-sm font-medium">{artisan.rating}</span>
@@ -513,26 +687,22 @@ const ArtisansPage = () => {
                       <Badge variant="secondary" className="text-xs">{artisan.craft}</Badge>
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
                         <MapPin className="h-3 w-3" />
-                        {artisan.location}
+                        <span className="truncate">{artisan.location}</span>
                       </div>
                     </div>
                   </div>
                 </CardHeader>
 
-                <CardContent>
+                <CardContent className="pt-0">
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Badge variant="secondary" className="text-xs">{artisan.type}</Badge>
                     </div>
                     
-                    <p className="text-sm text-muted-foreground">{artisan.description}</p>
+                    <p className="text-sm text-muted-foreground line-clamp-3">{artisan.description}</p>
                     
                     {/* Contact & Stats */}
-                    <div className="grid grid-cols-2 gap-3 p-3 bg-muted/20 rounded-lg">
-                      <div className="flex items-center gap-1">
-                        <Phone className="h-3 w-3 text-muted-foreground" />
-                        <span className="text-xs text-muted-foreground">{artisan.contact}</span>
-                      </div>
+                    <div className="grid grid-cols-2 gap-2 p-3 bg-muted/20 rounded-lg">
                       <div className="flex items-center gap-1">
                         <Package className="h-3 w-3 text-muted-foreground" />
                         <span className="text-xs text-muted-foreground">{artisan.totalOrders} orders</span>
@@ -541,60 +711,50 @@ const ArtisansPage = () => {
                         <Clock className="h-3 w-3 text-muted-foreground" />
                         <span className="text-xs text-muted-foreground">{artisan.experience}</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <MapPin className="h-3 w-3 text-muted-foreground" />
-                        <span className="text-xs text-muted-foreground">Active</span>
-                      </div>
                     </div>
                     
                     <div>
                       <h4 className="text-sm font-medium mb-2">Specialties:</h4>
                       <div className="flex flex-wrap gap-1">
-                        {artisan.specialties.map((specialty, index) => (
+                        {artisan.specialties.slice(0, 2).map((specialty, index) => (
                           <Badge key={index} variant="outline" className="text-xs">
                             {specialty}
                           </Badge>
                         ))}
+                        {artisan.specialties.length > 2 && (
+                          <Badge variant="outline" className="text-xs">
+                            +{artisan.specialties.length - 2} more
+                          </Badge>
+                        )}
                       </div>
                     </div>
 
-                    {artisan.awards && artisan.awards.length > 0 && (
-                      <div>
-                        <h4 className="text-sm font-medium mb-2 flex items-center gap-1">
-                          <Award className="h-3 w-3" />
-                          Awards:
-                        </h4>
-                        <div className="space-y-1">
-                          {artisan.awards.map((award, index) => (
-                            <div key={index} className="text-xs text-muted-foreground">• {award}</div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Reviews */}
+                    {/* Reviews Preview */}
                     {artisan.testimonials && artisan.testimonials.length > 0 && (
                       <div>
-                        <h4 className="text-sm font-medium mb-2">Recent Reviews:</h4>
-                        <div className="space-y-2">
-                          {artisan.testimonials.slice(0, 2).map((testimonial, index) => (
-                            <div key={index} className="p-2 bg-muted/10 rounded text-xs">
-                              <div className="flex items-center gap-1 mb-1">
-                                {[...Array(testimonial.rating)].map((_, i) => (
-                                  <Star key={i} className="h-2.5 w-2.5 fill-accent text-accent" />
-                                ))}
-                                <span className="font-medium">{testimonial.reviewer}</span>
-                              </div>
-                              <p className="text-muted-foreground">{testimonial.comment}</p>
-                            </div>
-                          ))}
+                        <div className="p-2 bg-muted/10 rounded text-xs">
+                          <div className="flex items-center gap-1 mb-1">
+                            {[...Array(artisan.testimonials[0].rating)].map((_, i) => (
+                              <Star key={i} className="h-2.5 w-2.5 fill-accent text-accent" />
+                            ))}
+                            <span className="font-medium">{artisan.testimonials[0].reviewer}</span>
+                          </div>
+                          <p className="text-muted-foreground line-clamp-2">{artisan.testimonials[0].comment}</p>
                         </div>
                       </div>
                     )}
 
                     <div className="flex gap-2 pt-2">
-                      <Button size="sm" className="flex-1">View Products</Button>
-                      <Button size="sm" variant="outline" className="flex-1">Contact</Button>
+                      <Button 
+                        size="sm" 
+                        className="flex-1 animate-fade-in"
+                        onClick={() => handleViewProducts(artisan)}
+                      >
+                        View Products
+                      </Button>
+                      <Button size="sm" variant="outline" className="flex-1">
+                        Contact
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -605,20 +765,30 @@ const ArtisansPage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 warm-gradient">
+      <section className="py-8 md:py-16 warm-gradient">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-serif font-bold text-primary-foreground mb-4">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary-foreground mb-4">
             Become Part of Our Artisan Community
           </h2>
           <p className="text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Are you a skilled craftsperson looking to showcase your work to art lovers worldwide? 
             Join our community and share your heritage with the world.
           </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground btn-glow">
+          <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground btn-glow animate-fade-in">
             Apply to Join
           </Button>
         </div>
       </section>
+
+      {/* Product Modal */}
+      {selectedArtisan && (
+        <ArtisanProductModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          artisanName={selectedArtisan.name}
+          products={selectedArtisan.products || []}
+        />
+      )}
     </div>
   );
 };
