@@ -28,7 +28,21 @@ export const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      {/* Logo Section */}
+      <div className="border-b bg-background">
+        <div className="container mx-auto px-4 py-4">
+          <Link to="/" className="flex items-center justify-center space-x-3">
+            <img src={potLogo} alt="Pottery" className="w-10 h-10" />
+            <div className="warm-gradient rounded-lg px-4 py-2">
+              <span className="text-2xl font-serif font-bold text-primary-foreground">
+                KΛRIGΛRI
+              </span>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       {/* Top banner */}
       <div className="hero-gradient px-4 py-2 text-center">
         <p className="text-sm text-primary-foreground font-medium">
@@ -36,138 +50,131 @@ export const Header = () => {
         </p>
       </div>
 
-      {/* Main header */}
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
+      {/* Navigation header */}
+      <div className="border-b bg-background">
+        <div className="container mx-auto px-4">
+          <div className="flex h-14 items-center justify-between">
+            {/* Navigation Links */}
+            <nav className="hidden md:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-sm font-medium text-foreground hover:text-primary transition-colors px-2 py-1 rounded-md hover:bg-muted/50"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
 
-          {/* Centered Logo */}
-          <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
-            <img src={potLogo} alt="Pottery" className="w-8 h-8" />
-            <div className="warm-gradient rounded-lg p-2">
-              <span className="text-xl font-serif font-bold text-primary-foreground">
-                KΛRIGΛRI
-              </span>
-            </div>
-          </Link>
-
-          {/* Right Side Actions */}
-          <div className="flex items-center space-x-2">
-            {/* Desktop Search */}
-            <div className="hidden md:flex items-center max-w-md">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="search"
-                  placeholder="Search handicrafts..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 w-64"
-                />
+            {/* Right Side Actions */}
+            <div className="flex items-center space-x-2">
+              {/* Desktop Search */}
+              <div className="hidden md:flex items-center max-w-md">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    placeholder="Search handicrafts..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 pr-4 w-64"
+                  />
+                </div>
               </div>
-            </div>
-            {/* Mobile search */}
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Search className="h-5 w-5" />
-            </Button>
+              
+              {/* Mobile search */}
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Search className="h-5 w-5" />
+              </Button>
 
-            {/* Wishlist */}
-            <Button variant="ghost" size="icon" className="hidden sm:flex">
-              <Heart className="h-5 w-5" />
-            </Button>
+              {/* Wishlist */}
+              <Button variant="ghost" size="icon" className="hidden sm:flex">
+                <Heart className="h-5 w-5" />
+              </Button>
 
-            {/* User Profile */}
-            {user ? (
-              <div className="flex items-center space-x-2">
-                <Link to="/profile">
-                  <Button variant="ghost" size="icon">
-                    <User className="h-5 w-5" />
+              {/* User Profile */}
+              {user ? (
+                <div className="flex items-center space-x-2">
+                  <Link to="/profile">
+                    <Button variant="ghost" size="icon">
+                      <User className="h-5 w-5" />
+                    </Button>
+                  </Link>
+                  <Button 
+                    size="sm" 
+                    variant="ghost" 
+                    onClick={() => signOut()}
+                    className="hidden md:flex"
+                  >
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <Link to="/auth">
+                  <Button size="sm" variant="outline">
+                    Sign In
                   </Button>
                 </Link>
-                <Button 
-                  size="sm" 
-                  variant="ghost" 
-                  onClick={() => signOut()}
-                  className="hidden md:flex"
-                >
-                  Sign Out
-                </Button>
-              </div>
-            ) : (
-              <Link to="/auth">
-                <Button size="sm" variant="outline">
-                  Sign In
+              )}
+
+              {/* Cart */}
+              <Link to="/cart">
+                <Button variant="ghost" size="icon" className="relative">
+                  <ShoppingCart className="h-5 w-5" />
+                  {cartItemsCount > 0 && (
+                    <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                      {cartItemsCount}
+                    </Badge>
+                  )}
                 </Button>
               </Link>
-            )}
 
-            {/* Cart */}
-            <Link to="/cart">
-              <Button variant="ghost" size="icon" className="relative">
-                <ShoppingCart className="h-5 w-5" />
-                {cartItemsCount > 0 && (
-                  <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs">
-                    {cartItemsCount}
-                  </Badge>
-                )}
+              {/* Mobile menu button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
-            </Link>
-
-            {/* Mobile menu button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t py-4">
-            <div className="space-y-4">
-              {/* Mobile search */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="search"
-                  placeholder="Search handicrafts..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4"
-                />
-              </div>
-
-              {/* Mobile nav items */}
-              <nav className="flex flex-col space-y-2">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="px-2 py-1 text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </nav>
             </div>
           </div>
-        )}
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="md:hidden border-t py-4">
+              <div className="space-y-4">
+                {/* Mobile search */}
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    placeholder="Search handicrafts..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 pr-4"
+                  />
+                </div>
+
+                {/* Mobile nav items */}
+                <nav className="flex flex-col space-y-2">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="px-2 py-1 text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

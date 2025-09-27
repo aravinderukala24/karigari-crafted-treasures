@@ -4,24 +4,34 @@ import { Card, CardContent } from '@/components/ui/card';
 const AboutPage = () => {
   const teamMembers = [
     {
-      name: "Arjun Sharma",
-      role: "Founder & CEO",
-      description: "Passionate about preserving traditional crafts and connecting artisans with global markets."
+      name: "Charitha",
+      role: "Team Captain & Full Stack Developer",
+      description: "Leading the development team with expertise in React, Node.js and system architecture. Passionate about creating seamless user experiences."
     },
     {
-      name: "Priya Patel", 
-      role: "Head of Artisan Relations",
-      description: "Building strong relationships with craftspeople across India and ensuring fair trade practices."
+      name: "Aravind", 
+      role: "Frontend Developer & UI/UX Designer",
+      description: "Specializing in modern frontend technologies and creating beautiful, responsive interfaces that bring artisan stories to life."
     },
     {
-      name: "Ravi Kumar",
-      role: "Chief Technology Officer", 
-      description: "Leading our digital transformation to make handicrafts accessible worldwide through technology."
+      name: "Mani",
+      role: "Backend Developer & DevOps Engineer", 
+      description: "Expert in server-side development, database optimization, and cloud infrastructure. Ensures our platform runs smoothly at scale."
     },
     {
-      name: "Meera Singh",
-      role: "Creative Director",
-      description: "Curating authentic collections and maintaining quality standards for our marketplace."
+      name: "Sathvika",
+      role: "Mobile App Developer",
+      description: "Developing cross-platform mobile applications to make handicrafts accessible on-the-go. Expert in React Native and mobile optimization."
+    },
+    {
+      name: "Nagi",
+      role: "Data Scientist & AI Engineer",
+      description: "Implementing machine learning algorithms for personalized recommendations and analyzing user behavior to improve the platform."
+    },
+    {
+      name: "Peena",
+      role: "Quality Assurance & Testing Lead",
+      description: "Ensuring robust code quality through comprehensive testing strategies and maintaining high standards across all features."
     }
   ];
 
@@ -93,7 +103,7 @@ const AboutPage = () => {
               Our passionate team of founders and leaders working to revolutionize the handicrafts industry and empower artisans across India.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <Card key={index} className="text-center">
                 <CardContent className="p-6">
